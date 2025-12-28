@@ -1,5 +1,5 @@
 name: "OpenSprinkler"
-version: "2.1.0"
+version: "0.1.0"
 slug: "opensprinkler"
 description: "Full OpenSprinkler Unified Firmware running as a local Add-on."
 url: "https://github.com/OpenSprinkler/OpenSprinkler-Firmware"
