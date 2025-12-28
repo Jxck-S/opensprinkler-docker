@@ -25,7 +25,7 @@ This mode is for running OpenSprinkler on a standard Linux server, Raspberry Pi,
 ### Option 2: Docker CLI
 
 ```bash
-docker build -t opensprinkler .
+docker build -t opensprinkler ./opensprinkler
 
 docker run -d \
   --name opensprinkler \
