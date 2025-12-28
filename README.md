@@ -43,8 +43,6 @@ This image is structured to work as a **Local Add-on** in Home Assistant (HAOS).
 
 ### Installation Steps
 
-### Installation Steps
-
 #### Option 1: One-Line Install (Easy)
 Run this command in your Home Assistant SSH terminal:
 ```bash
