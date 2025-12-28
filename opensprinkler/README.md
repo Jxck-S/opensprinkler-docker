@@ -1,4 +1,4 @@
-# ![Icon](icon.png) OpenSprinkler
+# <img src="icon.png" width="48" /> OpenSprinkler
 
 The official OpenSprinkler Unified Firmware running as a Home Assistant Add-on.
 

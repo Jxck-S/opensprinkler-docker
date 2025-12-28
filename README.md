@@ -1,4 +1,4 @@
-# ![Icon](opensprinkler/icon.png) OpenSprinkler Docker & Home Assistant Add-on
+# <img src="opensprinkler/icon.png" width="48" /> OpenSprinkler Docker & Home Assistant Add-on
 
 Multi-architecture OpenSprinkler Firmware build based on Debian Trixie. Supports `amd64`, `arm64`, and `armv7` (Raspberry Pi).
 
