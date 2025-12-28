@@ -1,0 +1,14 @@
+version: '3'
+services:
+  opensprinkler:
+    build: .
+    image: opensprinkler
+    container_name: opensprinkler
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      - TZ=UTC
+      - ADMIN_PASSWORD=secret
