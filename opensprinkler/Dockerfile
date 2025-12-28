@@ -1,4 +1,4 @@
-ARG BUILD_FROM=debian:trixie-slim
+
 
 # Helper stage to build liblgpio if not available or for consistency
 FROM debian:trixie-slim AS lgpio-builder

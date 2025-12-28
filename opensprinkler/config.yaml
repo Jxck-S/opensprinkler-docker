@@ -1,5 +1,5 @@
 name: "OpenSprinkler Firmware"
-version: "2.1.0"
+version: "2.1.1"
 slug: "opensprinkler"
 description: "OpenSprinkler Unified Firmware for Linux/Raspberry Pi"
 url: "https://github.com/OpenSprinkler/OpenSprinkler-Firmware"
