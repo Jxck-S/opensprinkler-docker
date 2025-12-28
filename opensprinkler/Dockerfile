@@ -46,7 +46,7 @@ RUN git clone https://github.com/OpenSprinkler/OpenSprinkler-Firmware.git && \
     # Build the OSPI version (standard Linux version)
     make VERSION=OSPI
 
-FROM ${BUILD_FROM}
+FROM debian:trixie-slim
 
 # Runtime dependencies
 RUN apt-get update && apt-get install -y \
