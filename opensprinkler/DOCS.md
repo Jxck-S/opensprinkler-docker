@@ -1,111 +1,33 @@
-# OpenSprinkler Docker & Home Assistant Add-on
+# OpenSprinkler Home Assistant Add-on
 
-Multi-architecture OpenSprinkler Firmware build based on Debian Trixie. Supports `amd64`, `arm64`, and `armv7` (Raspberry Pi).
+This add-on runs the **OpenSprinkler Firmware** directly within Home Assistant.
 
-> [!IMPORTANT]
-> **Scope & Functionality**: 
-> *   This is **NOT a Home Assistant Integration**. It does not create entities (sensors, switches) in Home Assistant. For that, we recommend using the [Hass OpenSprinkler Integration](https://github.com/vinteo/hass-opensprinkler)  this Add-on.
-> *   It is an **Add-on** that runs the full OpenSprinkler Firmware as a container. Use it to connect to remote stations (HTTP) or use the Web UI directly.
-> *   **GPIO Support**: While the build includes `liblgpio`, driving GPIO pins on a Raspberry Pi from within this Add-on container is **Untested** and may not work out of the box.
+## Features
+- **Full OpenSprinkler UI**: Access the complete OpenSprinkler interface.
+- **Ingress Support**: Secure access via Home Assistant sidebar (no port forwarding needed).
+- **Direct Access**: Optional direct port access (default: 8080) for mobile apps.
+- **Smart Config**: Preserves your `admin_password` and settings across restarts.
 
-## 🚀 Standalone Usage (Docker / Compose)
+## Installation & Configuration
 
-This mode is for running OpenSprinkler on a standard Linux server, Raspberry Pi, or desktop.
+1.  **Install**: Click the "Install" button.
+2.  **Configure**:
+    *   Go to the **Configuration** tab.
+    *   Set your `admin_password` (Default: `opendoor`).
+    *   *Optional*: Change the HTTP Port if using direct access.
+3.  **Start**: Click "Start".
+4.  **Open**: Click "Open Web UI" to see the interface.
 
-### Option 1: Docker Compose (Recommended)
+## Mobile App Setup (Direct Access)
+To use the official OpenSprinkler mobile app:
+1.  Go to the **Network** tab of this add-on.
+2.  Map **Container Port 8080** to a Host Port (e.g., `8080`).
+3.  In the mobile app, add a device using your Home Assistant IP and that port (e.g., `192.168.1.100:8080`).
 
-1. **Clone/Download** this repository.
-2. Review `docker-compose.yml`.
-3. Run:
-   ```bash
-   docker-compose up -d --build
-   ```
-4. Access the web interface at **[http://localhost:8080](http://localhost:8080)**.
+## Notes
+- **Hardware Access**: This container attempts to access GPIO for Raspberry Pi (OpenSprinkler Pi) hardware. If you are running Home Assistant on a generic PC/VM, this is fine—the software will run in "Demo Mode" or without hardware control, which is still perfect for managing smart watering logic if you use external stations or testing.
+- **Password**: The password you set in the "Configuration" tab takes precedence. If you change it in the OpenSprinkler UI, it may be reset to the Add-on value on restart.
 
-### Option 2: Docker CLI
-
-```bash
-docker build -t opensprinkler .
-
-docker run -d \
-  --name opensprinkler \
-  -p 8080:8080 \
-  -v $(pwd)/data:/data \
-  -e ADMIN_PASSWORD=mysecretpassword \
-  opensprinkler
-```
-
----
-
-## 🏠 Home Assistant Add-on
-
-This image is structured to work as a **Local Add-on** in Home Assistant (HAOS).
-
-### Installation Steps (The Proper Way)
-
-1. **Add Repository**:
-   - Go to **Settings > Add-ons > Add-on Store**.
-   - Click the **three dots** (top right) -> **Repositories**.
-   - Add this URL: `https://github.com/Jxck-S/opensprinkler-docker`
-   - Click **Add**.
-
-2. **Install**:
-   - Scroll down or refresh the store page.
-   - You should see **OpenSprinkler Firmware** under the "OpenSprinkler Docker Repository" section.
-   - Click it and press **Install**.
-
-3. **Configure**:
-   - **Configuration Tab**: Set your `admin_password`.
-   - **Network Tab**: Map port `8080` if you want direct access.
-   - **Start**: Click Start. Enjoy!
-
----
-
-## ⚙️ Configuration
-
-The container includes a "Smart Patch" script that applies configuration on boot without overwriting your station data.
-
-### Environment Variables
-
-| Variable | Description | Default | Notes |
-|----------|-------------|---------|-------|
-| `ADMIN_PASSWORD` | Sets the Web UI password | `opendoor` | Applied to `sopts.dat` on every boot. |
-| `HTTP_PORT` | Internal listening port | `8080` | **Standalone Only**. In HA, use Network mapping. |
-
-### Volumes
-
-| Path | Description |
-|------|-------------|
-| `/data` | **Required**. Stores all configuration (`*.dat`) and station data. Map this to a persistent folder. |
-
-## 🔧 Technical Details
-
-- **Base OS**: Debian Trixie Slim
-- **GPIO Support**: Includes `liblgpio` built from source.
-- **Port Management**:
-  - **HA Mode**: Internal port is locked to `8080` to prevent mapping conflicts. External port is controlled by HA.
-  - **Standalone**: Internal port can be changed via `HTTP_PORT` env var (though standard port mapping is preferred).
-
-## 🔄 Execution Flow
-
-Understanding how configuration is applied:
-
-### Standalone Docker
-1. **User** starts container with `-e ADMIN_PASSWORD=secret`.
-2. **`run.sh`** starts.
-3. Checks for first run -> runs OpenSprinkler momentarily to generate default `*.dat` files.
-4. Runs `python3 /gen_config.py`.
-5. Script detects **Environment Variable** `ADMIN_PASSWORD`.
-6. Script patches `sopts.dat` with hashed password.
-7. OpenSprinkler starts.
-
-### Home Assistant
-1. **User** saves configuration in HA UI.
-2. **Supervisor** writes `admin_password` to `/data/options.json`.
-3. **Supervisor** starts container.
-4. **`run.sh`** starts.
-5. Checks for first run -> generates defaults.
-6. Runs `python3 /gen_config.py`.
-7. Script detects **`/data/options.json`**.
-8. Script patches `sopts.dat` with hashed password from JSON.
-9. OpenSprinkler starts.
+## Support
+For issues with the firmware logic, visit the [OpenSprinkler Forums](https://opensprinkler.com/forums/).
+For issues with this specific Add-on container, submit an issue on the [GitHub Repository](https://github.com/Jxck-S/opensprinkler-docker).
