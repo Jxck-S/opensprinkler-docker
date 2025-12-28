@@ -3,7 +3,7 @@ set -e
 
 # Target Directory
 ADDON_DIR="/addons/opensprinkler"
-REPO_URL="https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/refs/heads/master"
+REPO_URL="https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/master"
 
 echo "Started OpenSprinkler Add-on Installation..."
 
