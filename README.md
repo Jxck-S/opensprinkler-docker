@@ -4,7 +4,7 @@ Multi-architecture OpenSprinkler Firmware build based on Debian Trixie. Supports
 
 > [!IMPORTANT]
 > **Scope & Functionality**: 
-> *   This is **NOT a Home Assistant Integration**. It does not create entities (sensors, switches) in Home Assistant. For that, we recommend using the [Hass OpenSprinkler Integration](https://github.com/vinteo/hass-opensprinkler) alongside this Add-on.
+> *   This is **NOT a Home Assistant Integration**. It does not create entities (sensors, switches) in Home Assistant. For that, we recommend using the [Hass OpenSprinkler Integration](https://github.com/vinteo/hass-opensprinkler)  this Add-on.
 > *   It is an **Add-on** that runs the full OpenSprinkler Firmware as a container. Use it to connect to remote stations (HTTP) or use the Web UI directly.
 > *   **GPIO Support**: While the build includes `liblgpio`, driving GPIO pins on a Raspberry Pi from within this Add-on container is **Untested** and may not work out of the box.
 
@@ -43,13 +43,21 @@ This image is structured to work as a **Local Add-on** in Home Assistant (HAOS).
 
 ### Installation Steps
 
-1. **Access HA File System**:
-   - Use the **Samba Share** add-on or SSH to access your Home Assistant instance.
-   - Navigate to the `/addons` directory.
+### Installation Steps
 
+#### Option 1: One-Line Install (Easy)
+Run this command in your Home Assistant SSH terminal:
+```bash
+wget -O - https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/main/install_ha.sh | bash
+```
+
+#### Option 2: Manual Install
+1. **Access HA File System**:
+   - Use the **Samba Share** add-on or SSH.
+   - Navigate to `/addons`.
 2. **Upload Files**:
-   - Create a folder named `opensprinkler` inside `/addons`.
-   - Copy all files from this repository (`Dockerfile`, `config.yaml`, `run.sh`, `gen_config.py`, etc.) into `/addons/opensprinkler/`.
+   - Create folder `opensprinkler`.
+   - Copy all repo files into `/addons/opensprinkler/`.
 
 3. **Install**:
    - Go to **Settings > Add-ons > Add-on Store**.
