@@ -8,9 +8,7 @@ arch:
   - aarch64
   - amd64
   - armv7
-map:
-  - config:rw
-  - share:rw
+
 options:
   admin_password: "opendoor"
 schema:
