@@ -41,34 +41,23 @@ docker run -d \
 
 This image is structured to work as a **Local Add-on** in Home Assistant (HAOS).
 
-### Installation Steps
+### Installation Steps (The Proper Way)
 
-#### Option 1: One-Line Install (Easy)
-Run this command in your Home Assistant SSH terminal:
-```bash
-wget -O - https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/master/install_ha.sh | bash
-```
-
-#### Option 2: Manual Install
-1. **Access HA File System**:
-   - Use the **Samba Share** add-on or SSH.
-   - Navigate to `/addons`.
-2. **Upload Files**:
-   - Create folder `opensprinkler`.
-   - Copy all repo files into `/addons/opensprinkler/`.
-
-3. **Install**:
+1. **Add Repository**:
    - Go to **Settings > Add-ons > Add-on Store**.
-   - Click the **three dots** (top right) -> **Check for updates**.
-   - You should see **OpenSprinkler Firmware** appear under "Local Add-ons".
-   - Click **Install**.
+   - Click the **three dots** (top right) -> **Repositories**.
+   - Add this URL: `https://github.com/Jxck-S/opensprinkler-docker`
+   - Click **Add**.
 
-4. **Configure**:
+2. **Install**:
+   - Scroll down or refresh the store page.
+   - You should see **OpenSprinkler Firmware** under the "OpenSprinkler Docker Repository" section.
+   - Click it and press **Install**.
+
+3. **Configure**:
    - **Configuration Tab**: Set your `admin_password`.
-   - **Network Tab**: Map the Container Port `8080` to your desired Host Port (e.g., `80` or `8080`).
-
-5. **Start**:
-   - Click **Start**. Check the logs to verify it initializes correctly.
+   - **Network Tab**: Map port `8080` if you want direct access.
+   - **Start**: Click Start. Enjoy!
 
 ---
 

@@ -1,7 +1,7 @@
 version: '3'
 services:
   opensprinkler:
-    build: .
+    build: ./opensprinkler
     image: opensprinkler
     container_name: opensprinkler
     restart: unless-stopped
