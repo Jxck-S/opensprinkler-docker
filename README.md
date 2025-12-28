@@ -46,7 +46,7 @@ This image is structured to work as a **Local Add-on** in Home Assistant (HAOS).
 #### Option 1: One-Line Install (Easy)
 Run this command in your Home Assistant SSH terminal:
 ```bash
-wget -O - https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/main/install_ha.sh | bash
+wget -O - https://raw.githubusercontent.com/Jxck-S/opensprinkler-docker/refs/heads/master/install_ha.sh | bash
 ```
 
 #### Option 2: Manual Install
